@@ -26,8 +26,9 @@ struct AppView: View {
                         VStack {
                             TextFieldView()
                         }
-//                        .navigationBarTitle("Home", displayMode: .inline)
+                        .navigationBarTitle("Add new word", displayMode: .inline)
                     }
+                    .padding(.top, 20)
                 case 1:
                     NavigationView {
                         VStack {
