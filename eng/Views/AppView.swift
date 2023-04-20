@@ -24,16 +24,17 @@ struct AppView: View {
                 case 0:
                     NavigationView {
                         VStack {
-                            Text("First screen")
+                            TextFieldView()
                         }
-                        .navigationTitle("Home")
+//                        .navigationBarTitle("Home", displayMode: .inline)
                     }
                 case 1:
                     NavigationView {
                         VStack {
-                            Text("First screen")
+//                            Text("First screen")
                         }
-                        .navigationTitle("To study")
+//                        .navigationBarTitle("To study", displayMode: .inline)
+
                     }
 //                case 2:
 //                    NavigationView {
@@ -45,9 +46,9 @@ struct AppView: View {
                 default:
                     NavigationView {
                         VStack {
-                            Text("Second screen")
+//                            Text("Second screen")
                         }
-                        .navigationTitle("Second")
+//                        .navigationTitle("Second")
                     }
                 }
             }
@@ -75,8 +76,6 @@ struct AppView: View {
         }
     }
 }
-
-
 
 struct AppView_Previews: PreviewProvider {
     static var previews: some View {
