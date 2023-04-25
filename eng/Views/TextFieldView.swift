@@ -19,8 +19,9 @@ struct TextFieldView: View {
                 .background(
                     Rectangle()
                         .fill(Color.white)
-                        .shadow(color: .black, radius: 6))
-
+                        .cornerRadius(10)
+                        .shadow(color: .black, radius: 10))
+                
                 .padding(.bottom, 40)
 
             TextField("Enter the translation here", text: $textFieldText)
@@ -29,7 +30,8 @@ struct TextFieldView: View {
                 .background(
                     Rectangle()
                         .fill(Color.white)
-                        .shadow(color: .black, radius: 6))
+                        .cornerRadius(10)
+                        .shadow(color: .black, radius: 10))
         }
     }
 }

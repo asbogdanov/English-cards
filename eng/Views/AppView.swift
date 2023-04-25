@@ -25,9 +25,13 @@ struct AppView: View {
                     NavigationView {
                         VStack {
                             TextFieldView()
+                            AddButtonView()
+                                .padding(.top, 50)
                         }
-//                        .navigationBarTitle("Home", displayMode: .inline)
+                        .navigationBarTitle("Add word", displayMode: .inline)
                     }
+                    .padding(.top, 20)
+
                 case 1:
                     NavigationView {
                         VStack {
@@ -52,6 +56,8 @@ struct AppView: View {
                     }
                 }
             }
+
+
 
             Spacer()
 
