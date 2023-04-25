@@ -9,16 +9,17 @@ import SwiftUI
 
 struct AppView: View {
     @State var selectedIndex = 0
+    @State private var words = ["Word - Слово", "Table - Стол", "Eat - Есть"]
 
     let icons = [
         "house",
-        "list.bullet.clipboard",
-//        "person"
+        "list.bullet.clipboard"
     ]
 
     var body: some View {
         VStack(spacing: 0) {
             //Content
+
             ZStack {
                 switch selectedIndex {
                 case 0:
@@ -28,42 +29,33 @@ struct AppView: View {
                             AddButtonView()
                                 .padding(.top, 50)
                         }
-                        .navigationBarTitle("Add word", displayMode: .inline)
+                        .navigationBarTitle("Add new word", displayMode: .inline)
                     }
                     .padding(.top, 20)
 
-                case 1:
-                    NavigationView {
-                        VStack {
-//                            Text("First screen")
-                        }
-//                        .navigationBarTitle("To study", displayMode: .inline)
-
-                    }
-//                case 2:
-//                    NavigationView {
-//                        VStack {
-//                            Text("First screen")
-//                        }
-//                        .navigationTitle("Profile")
-//                    }
                 default:
                     NavigationView {
                         VStack {
-//                            Text("Second screen")
+                            List {
+                                ForEach(words, id: \.self) { words in
+                                    Text(words)
+                                }
+                                .onDelete(perform: delete)
+                                .onMove(perform: move)
+                            }
+                            .navigationBarItems(trailing: EditButton())
                         }
-//                        .navigationTitle("Second")
+                         .navigationBarTitle("My dictionary", displayMode: .inline)
                     }
+                    .padding(.top, 20)
                 }
             }
-
-
 
             Spacer()
 
             Divider()
                 .padding(.bottom, 20)
-            HStack{
+            HStack {
                 ForEach(0..<2, id: \.self) { number in
                     Spacer()
                     Button(action: {
@@ -80,6 +72,14 @@ struct AppView: View {
                 }
             }
         }
+    }
+//MARK: - функция удаления слов из словаря
+    func delete(at offsets: IndexSet) {
+        words.remove(atOffsets: offsets)
+    }
+//MARK: - функция перемещения слов в словаре
+    func move(from source: IndexSet, to destination: Int) {
+        words.move(fromOffsets: source, toOffset: destination)
     }
 }
 

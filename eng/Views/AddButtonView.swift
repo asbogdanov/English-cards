@@ -10,7 +10,7 @@ import SwiftUI
 struct AddButtonView: View {
     var body: some View {
         Button(action: {
-            //MARK: - ADD ACTION
+            //action
         }, label: {
             Text("Add word")
                 .font(.headline)
@@ -22,7 +22,7 @@ struct AddButtonView: View {
                 .shadow(color: .black, radius: 5)
         })
         .buttonStyle(PlainButtonStyle())
-        .padding(40)
+        .padding(65)
 
     }
 }
