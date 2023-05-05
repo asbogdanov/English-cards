@@ -10,6 +10,7 @@ import SwiftUI
 struct TextFieldView: View {
     @State var englishWordTestField: String = ""
     @State var translateWordTextField: String = ""
+    @FocusState private var isFocused: Bool
 
     var body: some View {
 
@@ -25,6 +26,7 @@ struct TextFieldView: View {
                 .onAppear {
                     UITextField.appearance().clearButtonMode = .whileEditing
                 }
+                .focused($isFocused)
                 
                 .padding(.bottom, 40)
 
@@ -39,6 +41,15 @@ struct TextFieldView: View {
                 .onAppear {
                     UITextField.appearance().clearButtonMode = .whileEditing
                 }
+                .focused($isFocused)
+        }
+        .toolbar {
+            ToolbarItemGroup(placement: .keyboard) {
+                Spacer()
+                Button ("Done") {
+                    isFocused = false
+                }
+            }
         }
     }
 }

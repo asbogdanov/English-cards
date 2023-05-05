@@ -11,19 +11,26 @@ struct AddButtonView: View {
     var body: some View {
         Button(action: {
             //action
-        }, label: {
-            Text("Add word")
-                .font(.headline)
-                .foregroundColor(.white)
-                .frame(height: 55)
-                .frame(maxWidth: .infinity)
-                .background(Color.blue)
-                .cornerRadius(10)
-                .shadow(color: .black, radius: 5)
-        })
+        }) {
+            HStack {
+                Spacer(minLength: 100)
+
+                Text("Next")
+                    .frame(height: 55)
+                    .frame(maxWidth: .infinity)
+
+                Image(systemName: "arrowshape.right.fill")
+                
+                Spacer(minLength: 90)
+            }
+            .font(.headline)
+            .background(Color.blue)
+            .foregroundColor(.white)
+            .cornerRadius(10)
+            .shadow(color: .black, radius: 5)
+        }
         .buttonStyle(PlainButtonStyle())
         .padding(65)
-
     }
 }
 
