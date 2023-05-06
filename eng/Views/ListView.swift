@@ -15,13 +15,10 @@ struct ListView: View {
         ZStack(alignment: Alignment(horizontal: .trailing, vertical: .bottom)) {
             ScrollView(.vertical, showsIndicators: false) {
                 VStack {
-                    CardItem()
-                    CardItem()
-                    CardItem()
-                    CardItem()
-                    CardItem()
-                    CardItem()
-                    CardItem()
+                    CardItem {
+                        //
+                    }
+
                 }
                 .padding(.vertical, 15)
                 .padding(.horizontal, 20)
@@ -49,22 +46,61 @@ struct ListView: View {
 }
 
 struct CardItem: View {
+
+    @State var offsetX: CGFloat = 0
+
+    var onDelete: ()->()
+
     var body: some View {
-        VStack(alignment: .leading, spacing: 20) {
-            Text("English")
-                .font(.system(size: 20, weight: .bold))
+        ZStack(alignment: .trailing) {
+            removeImage()
 
-            Divider()
+            VStack(alignment: .leading, spacing: 20) {
+                Text("English")
+                    .font(.system(size: 20, weight: .bold))
 
-            Text("Русский")
-                .font(.system(size: 20))
+                Divider()
+
+                Text("Русский")
+                    .font(.system(size: 20))
+            }
+            .padding(30)
+            .background(
+                Rectangle()
+                    .fill(Color.white)
+                    .cornerRadius(10)
+                    .shadow(color: .black, radius: 10))
+            .offset(x: offsetX)
+            .gesture(DragGesture()
+                .onChanged{ value in
+                    if value.translation.width < 0 {
+                        offsetX = value.translation.width
+                    }
+                }
+                .onEnded{ value in
+                    withAnimation {
+                        if screenSize().width * 0.7 < -value.translation.width {
+                            withAnimation {
+                                offsetX = -screenSize().width
+                                onDelete()
+                            }
+                        } else {
+                            offsetX = .zero
+                        }
+                    }
+                }
+            )
         }
-        .padding(30)
-        .background(
-            Rectangle()
-                .fill(Color.white)
-                .cornerRadius(10)
-                .shadow(color: .black, radius: 10))
+    }
+    @ViewBuilder
+    func removeImage() -> some View {
+        Image(systemName: "xmark")
+            .resizable()
+            .frame(width: 10, height: 10)
+            .offset(x: 30)
+            .offset(x: offsetX * 0.5)
+            .scaleEffect(CGSize(width: 0.1 * -offsetX * 0.08,
+                                height: 0.1 * -offsetX * 0.08))
     }
 }
 
@@ -73,3 +109,14 @@ struct ListView_Previews: PreviewProvider {
         ListView()
     }
 }
+
+extension View {
+    func screenSize() -> CGSize {
+        guard let window = UIApplication.shared.connectedScenes.first as? UIWindowScene
+        else {
+            return .zero
+        }
+        return window.screen.bounds.size
+    }
+}
+

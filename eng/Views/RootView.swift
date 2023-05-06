@@ -28,6 +28,7 @@ struct RootView: View {
             }
             if listViewModel.isShowAddView {
                 NewWordView()
+                    .environmentObject(listViewModel)
             }
         }
     }
