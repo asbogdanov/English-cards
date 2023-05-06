@@ -11,6 +11,7 @@ struct NewWordView: View {
     
     @State var newWord = ""
     @State var wordTranslate = ""
+    @EnvironmentObject var listViewModel: ListViewModel
 
     var body: some View {
         VStack {
@@ -24,7 +25,7 @@ struct NewWordView: View {
                 Spacer()
 
                 Button {
-                    //
+                    listViewModel.isShowAddView.toggle()
                 } label: {
                     Image(systemName: "xmark")
                         .resizable()
