@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct ListView: View {
+
+    @EnvironmentObject var listViewModel: ListViewModel
+
     var body: some View {
         ZStack(alignment: Alignment(horizontal: .trailing, vertical: .bottom)) {
             ScrollView(.vertical, showsIndicators: false) {
@@ -25,16 +28,18 @@ struct ListView: View {
             }
 
             Button {
-                //
+                listViewModel.isShowAddView.toggle()
             } label: {
                 ZStack {
                     Circle()
                         .frame(width: 56, height: 56)
-                        .foregroundColor(Color(.lightGray))
+                        .foregroundColor(Color.blue)
+                    
                     Image(systemName: "plus")
                         .resizable()
                         .frame(width: 20, height: 20)
                         .foregroundColor(.white)
+                        .font(.headline)
                 }
                 .offset(x: -20, y: -30)
             }

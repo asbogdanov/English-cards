@@ -8,33 +8,53 @@
 import SwiftUI
 
 struct RandomWordView: View {
+    @State var isShowTranslate = false
+
     var body: some View {
         ZStack(alignment: Alignment(horizontal: .center, vertical: .bottom)) {
             VStack {
                 Spacer()
 
                 VStack {
-                    Text("English")
-                    Text("Русский")
+                    VStack(alignment: .leading, spacing: 20) {
+                        Text("English")
+                            .font(.system(size: 36, weight: .bold))
+                        Text("Русский")
+                            .font(.system(size: 30))
+                            .opacity(isShowTranslate ? 1 : 0)
+                    }
 
                     ZStack {
-                        Button {
-                            //
-                        } label: {
-                            Text("Show translate")
+                        Button(action: {
+                            withAnimation {
+                                isShowTranslate.toggle()
+                            }
+                        }) {
+                            HStack {
+                                Spacer()
+
+                                Text("Show translate")
+                                    .frame(height: 55)
+                                    .frame(maxWidth: .infinity)
+
+                                Spacer()
+                            }
+                            .font(.headline)
+                            .background(Color.blue)
+                            .foregroundColor(.white)
+                            .cornerRadius(10)
+                            .shadow(color: .black, radius: 5)
                         }
-
+                        .buttonStyle(PlainButtonStyle())
+                        .padding(65)
                     }
+                    .opacity(isShowTranslate ? 0 : 1)
                 }
-
-                Spacer()
 
                 Button {
                     //
                 } label: {
                     AddButtonView()
-//                    Text("Next")
-//                    Image(systemName: "chevron.right")
                 }
                 
             }
@@ -45,6 +65,6 @@ struct RandomWordView: View {
 
 struct RandomWordView_Previews: PreviewProvider {
     static var previews: some View {
-        RootView()
+        RandomWordView()
     }
 }

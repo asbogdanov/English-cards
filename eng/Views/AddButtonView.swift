@@ -13,15 +13,15 @@ struct AddButtonView: View {
             //action
         }) {
             HStack {
-                Spacer(minLength: 100)
+                Spacer(minLength: 50)
 
-                Text("Next")
+                Text("Next word")
                     .frame(height: 55)
                     .frame(maxWidth: .infinity)
 
                 Image(systemName: "arrowshape.right.fill")
                 
-                Spacer(minLength: 90)
+                Spacer(minLength: 70)
             }
             .font(.headline)
             .background(Color.blue)

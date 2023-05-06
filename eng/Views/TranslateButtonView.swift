@@ -9,7 +9,22 @@ import SwiftUI
 
 struct TranslateButtonView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Button(action: {
+            //            isShowTranslate.toggle()
+        }) {
+            HStack {
+                Text("Show translate")
+                    .frame(height: 55)
+                    .frame(maxWidth: .infinity)
+            }
+            .font(.headline)
+            .background(Color.blue)
+            .foregroundColor(.white)
+            .cornerRadius(10)
+            .shadow(color: .black, radius: 5)
+        }
+        .buttonStyle(PlainButtonStyle())
+        .padding(65)
     }
 }
 
