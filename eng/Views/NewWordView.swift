@@ -51,7 +51,7 @@ struct NewWordView: View {
                         .onAppear {
                             UITextField.appearance().clearButtonMode = .whileEditing
                         }
-                        .autocorrectionDisabled()
+//                        .autocorrectionDisabled()
                 }
                 .padding()
                 
@@ -66,13 +66,13 @@ struct NewWordView: View {
                     .onAppear {
                         UITextField.appearance().clearButtonMode = .whileEditing
                     }
+//                    .autocorrectionDisabled()
             }
 
             Spacer()
             
             Button(action: {
-                if newWord.count == 0,
-                   wordTranslate.count == 0 {
+                if newWord.count == 0 || wordTranslate.count == 0 {
                     showAlert.toggle()
                 } else {
                     let word = WordItem()

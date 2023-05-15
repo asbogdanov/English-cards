@@ -6,24 +6,32 @@
 //
 
 import SwiftUI
+import RealmSwift
 
 struct RandomWordView: View {
     @State var isShowTranslate = false
-
+    @ObservedResults(WordItem.self) var wordItem
+    
+    @State var word = WordItem()
+    @State var offsetX: CGFloat = 0
+    @State var opacity: CGFloat = 1
+    
     var body: some View {
         ZStack(alignment: Alignment(horizontal: .center, vertical: .bottom)) {
             VStack {
                 Spacer()
-
+                
                 VStack {
                     VStack(alignment: .leading, spacing: 20) {
-                        Text("English")
+                        Text(word.mainWord)
                             .font(.system(size: 36, weight: .bold))
-                        Text("Русский")
+                        Text(word.translateWord)
                             .font(.system(size: 30))
                             .opacity(isShowTranslate ? 1 : 0)
                     }
-
+                    .opacity(opacity)
+                    .offset(x: offsetX)
+                    
                     ZStack {
                         Button(action: {
                             withAnimation {
@@ -32,11 +40,11 @@ struct RandomWordView: View {
                         }) {
                             HStack {
                                 Spacer()
-
+                                
                                 Text("Show translate")
                                     .frame(height: 55)
                                     .frame(maxWidth: .infinity)
-
+                                
                                 Spacer()
                             }
                             .font(.headline)
@@ -51,15 +59,57 @@ struct RandomWordView: View {
                     .opacity(isShowTranslate ? 0 : 1)
                 }
 
-                Button {
-                    //
-                } label: {
-                    NextWordButtonView()
+                
+                Button(action: {
+                    withAnimation {
+                        offsetX = -50
+                        opacity = 0
+                    }
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
+                        getRandomWord()
+                        offsetX = 30
+                        isShowTranslate = false
+
+                        withAnimation {
+                            offsetX = 0
+                            opacity = 1
+                        }
+                    }
+                }) {
+                    HStack {
+                        Spacer(minLength: 50)
+                        
+                        Text("Next word")
+                            .frame(height: 55)
+                            .frame(maxWidth: .infinity)
+                        
+                        Image(systemName: "arrowshape.right.fill")
+                        
+                        Spacer(minLength: 60)
+                    }
+                    .font(.headline)
+                    .background(Color.blue)
+                    .foregroundColor(.white)
+                    .cornerRadius(10)
+                    .shadow(color: .black, radius: 5)
+                }
+                .buttonStyle(PlainButtonStyle())
+                .padding(65)
+                .onAppear {
+                    getRandomWord()
                 }
             }
         }
     }
+    func getRandomWord() {
+        let rand = Int.random(in: 0...wordItem.count - 1)
+        self.word = wordItem[rand]
+    }
 }
+
+
+
+
 
 struct RandomWordView_Previews: PreviewProvider {
     static var previews: some View {

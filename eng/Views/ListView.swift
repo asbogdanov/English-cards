@@ -20,7 +20,10 @@ struct ListView: View {
                 ForEach(wordItem, id: \.id) { item in
                     VStack {
                         CardItem(carditem: item) {
-                            $wordItem.remove(item)
+
+                            withAnimation {
+                                $wordItem.remove(item)
+                            }
                         }
                     }
                     .padding(.vertical, 15)
@@ -86,6 +89,10 @@ struct CardItem: View {
                 .onEnded { value in
                     withAnimation {
                         if screenSize().width * 0.7 < -value.translation.width {
+
+                            //При удалении карточки срабатывает виброотклик(таптикенджин)
+                            UIImpactFeedbackGenerator(style: .medium).impactOccurred()
+
                             withAnimation {
                                 offsetX = -screenSize().width
                                 onDelete()
@@ -117,6 +124,7 @@ struct ListView_Previews: PreviewProvider {
     }
 }
 
+//Расширение для определения размера экрана любого размера
 extension View {
     func screenSize() -> CGSize {
         guard let window = UIApplication.shared.connectedScenes.first as? UIWindowScene
