@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct AddButtonView: View {
+struct NextWordButtonView: View {
     var body: some View {
         Button(action: {
             //action
@@ -21,7 +21,7 @@ struct AddButtonView: View {
 
                 Image(systemName: "arrowshape.right.fill")
                 
-                Spacer(minLength: 70)
+                Spacer(minLength: 60)
             }
             .font(.headline)
             .background(Color.blue)
@@ -36,6 +36,6 @@ struct AddButtonView: View {
 
 struct AddButtonView_Previews: PreviewProvider {
     static var previews: some View {
-        AddButtonView()
+        NextWordButtonView()
     }
 }

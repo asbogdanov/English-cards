@@ -54,12 +54,10 @@ struct RandomWordView: View {
                 Button {
                     //
                 } label: {
-                    AddButtonView()
+                    NextWordButtonView()
                 }
-                
             }
         }
-
     }
 }
 
