@@ -6,11 +6,14 @@
 //
 
 import SwiftUI
+import RealmSwift
 
 struct NewWordView: View {
     
     @State var newWord = ""
     @State var wordTranslate = ""
+    @State var showAlert = false
+    @ObservedResults(WordItem.self) var wordItem
     @EnvironmentObject var listViewModel: ListViewModel
 
     var body: some View {
@@ -21,6 +24,7 @@ struct NewWordView: View {
                 Text("New word")
                     .font(.system(size: 20, weight: .black))
                     .padding(.leading, 16)
+                    .autocorrectionDisabled()
 
                 Spacer()
 
@@ -43,10 +47,11 @@ struct NewWordView: View {
                             Rectangle()
                                 .fill(Color.white)
                                 .cornerRadius(10)
-                                .shadow(color: .black, radius: 10))
+                                .shadow(color: .black, radius: 7))
                         .onAppear {
                             UITextField.appearance().clearButtonMode = .whileEditing
                         }
+                        .autocorrectionDisabled()
                 }
                 .padding()
                 
@@ -57,7 +62,7 @@ struct NewWordView: View {
                         Rectangle()
                             .fill(Color.white)
                             .cornerRadius(10)
-                            .shadow(color: .black, radius: 10))
+                            .shadow(color: .black, radius: 7))
                     .onAppear {
                         UITextField.appearance().clearButtonMode = .whileEditing
                     }
@@ -66,6 +71,20 @@ struct NewWordView: View {
             Spacer()
             
             Button(action: {
+                if newWord.count == 0,
+                   wordTranslate.count == 0 {
+                    showAlert.toggle()
+                } else {
+                    let word = WordItem()
+                    word.mainWord = newWord
+                    word.translateWord = wordTranslate
+
+                    $wordItem.append(word)
+
+                    withAnimation {
+                        listViewModel.isShowAddView.toggle()
+                    }
+                }
                 //
             }) {
                 HStack {
@@ -79,6 +98,7 @@ struct NewWordView: View {
                 .cornerRadius(10)
                 .shadow(color: .black, radius: 5)
             }
+            .alert(Text("Empty fields"), isPresented: $showAlert, actions: {})
             .buttonStyle(PlainButtonStyle())
             .padding(65)
         }

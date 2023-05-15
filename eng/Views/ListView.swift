@@ -6,24 +6,29 @@
 //
 
 import SwiftUI
+import RealmSwift
 
 struct ListView: View {
-
+    
     @EnvironmentObject var listViewModel: ListViewModel
-
+    @ObservedResults(WordItem.self) var wordItem
+    
     var body: some View {
         ZStack(alignment: Alignment(horizontal: .trailing, vertical: .bottom)) {
             ScrollView(.vertical, showsIndicators: false) {
-                VStack {
-                    CardItem {
-                        //
+                
+                ForEach(wordItem, id: \.id) { item in
+                    VStack {
+                        CardItem(carditem: item) {
+                            $wordItem.remove(item)
+                        }
                     }
-
+                    .padding(.vertical, 15)
+                    .padding(.horizontal, 20)
                 }
-                .padding(.vertical, 15)
-                .padding(.horizontal, 20)
+                .frame(maxWidth: .infinity)
             }
-
+            
             Button {
                 listViewModel.isShowAddView.toggle()
             } label: {
@@ -48,20 +53,21 @@ struct ListView: View {
 struct CardItem: View {
 
     @State var offsetX: CGFloat = 0
-
+    var carditem: WordItem
+    
     var onDelete: ()->()
-
+    
     var body: some View {
         ZStack(alignment: .trailing) {
             removeImage()
-
+            
             VStack(alignment: .leading, spacing: 20) {
-                Text("English")
+                Text(carditem.mainWord)
                     .font(.system(size: 20, weight: .bold))
-
+                
                 Divider()
-
-                Text("Русский")
+                
+                Text(carditem.translateWord)
                     .font(.system(size: 20))
             }
             .padding(30)
@@ -69,7 +75,7 @@ struct CardItem: View {
                 Rectangle()
                     .fill(Color.white)
                     .cornerRadius(10)
-                    .shadow(color: .black, radius: 10))
+                    .shadow(color: .black, radius: 7))
             .offset(x: offsetX)
             .gesture(DragGesture()
                 .onChanged{ value in
@@ -77,7 +83,7 @@ struct CardItem: View {
                         offsetX = value.translation.width
                     }
                 }
-                .onEnded{ value in
+                .onEnded { value in
                     withAnimation {
                         if screenSize().width * 0.7 < -value.translation.width {
                             withAnimation {
@@ -92,6 +98,7 @@ struct CardItem: View {
             )
         }
     }
+    
     @ViewBuilder
     func removeImage() -> some View {
         Image(systemName: "xmark")
