@@ -101,6 +101,7 @@ struct RandomWordView: View {
             }
         }
     }
+    
     func getRandomWord() {
         let rand = Int.random(in: 0...wordItem.count - 1)
         self.word = wordItem[rand]
