@@ -21,10 +21,9 @@ struct NewWordView: View {
             HStack {
                 Spacer()
 
-                Text("New word")
+                Text("Новое слово")
                     .font(.system(size: 20, weight: .black))
                     .padding(.leading, 16)
-                    .autocorrectionDisabled()
 
                 Spacer()
 
@@ -38,9 +37,12 @@ struct NewWordView: View {
                 }
             }
             .padding()
+
+            Divider()
+            
             VStack {
                 HStack {
-                    TextField("Add English word", text: $newWord)
+                    TextField("Напишите слово", text: $newWord)
                         .padding()
                         .frame(width: UIScreen.main.bounds.width - 65, height: 80)
                         .background(
@@ -51,11 +53,11 @@ struct NewWordView: View {
                         .onAppear {
                             UITextField.appearance().clearButtonMode = .whileEditing
                         }
-//                        .autocorrectionDisabled()
+                    //                        .autocorrectionDisabled()
                 }
                 .padding()
                 
-                TextField("Add Russian word", text: $wordTranslate)
+                TextField("Напишите перевод слова", text: $wordTranslate)
                     .padding()
                     .frame(width: UIScreen.main.bounds.width - 65, height: 80)
                     .background(
@@ -66,7 +68,7 @@ struct NewWordView: View {
                     .onAppear {
                         UITextField.appearance().clearButtonMode = .whileEditing
                     }
-//                    .autocorrectionDisabled()
+                //                    .autocorrectionDisabled()
             }
 
             Spacer()
@@ -88,7 +90,7 @@ struct NewWordView: View {
                 //
             }) {
                 HStack {
-                    Text("Save")
+                    Text("Сохранить")
                         .frame(height: 55)
                         .frame(maxWidth: .infinity)
                 }
@@ -98,7 +100,7 @@ struct NewWordView: View {
                 .cornerRadius(10)
                 .shadow(color: .black, radius: 5)
             }
-            .alert(Text("Empty fields"), isPresented: $showAlert, actions: {})
+            .alert(Text("Необходимо заполнить оба поля"), isPresented: $showAlert, actions: {})
             .buttonStyle(PlainButtonStyle())
             .padding(65)
         }

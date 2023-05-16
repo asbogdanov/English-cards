@@ -10,6 +10,7 @@ import SwiftUI
 @main
 struct EngApp: App {
     var body: some Scene {
+        //показывать путь Realm файла
         let _ = print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.path)
 
         WindowGroup {

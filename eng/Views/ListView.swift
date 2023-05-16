@@ -14,41 +14,54 @@ struct ListView: View {
     @ObservedResults(WordItem.self) var wordItem
     
     var body: some View {
-        ZStack(alignment: Alignment(horizontal: .trailing, vertical: .bottom)) {
-            ScrollView(.vertical, showsIndicators: false) {
-                
-                ForEach(wordItem, id: \.id) { item in
-                    VStack {
-                        CardItem(carditem: item) {
+        VStack {
+            Spacer()
 
-                            withAnimation {
-                                $wordItem.remove(item)
+            Text("Ваш словарь")
+                .font(.system(size: 20, weight: .black))
+                .padding(.vertical, 8)
+
+            Spacer()
+
+            Divider()
+
+            ZStack(alignment: Alignment(horizontal: .trailing, vertical: .bottom)) {
+                ScrollView(.vertical, showsIndicators: false) {
+
+                    ForEach(wordItem, id: \.id) { item in
+                        VStack {
+                            CardItem(carditem: item) {
+                                withAnimation {
+                                    $wordItem.remove(item)
+                                }
                             }
                         }
+                        .padding(.vertical, 15)
+                        .padding(.horizontal, 20)
                     }
-                    .padding(.vertical, 15)
-                    .padding(.horizontal, 20)
+                    .frame(maxWidth: .infinity)
                 }
-                .frame(maxWidth: .infinity)
-            }
-            
-            Button {
-                listViewModel.isShowAddView.toggle()
-            } label: {
-                ZStack {
-                    Circle()
-                        .frame(width: 56, height: 56)
-                        .foregroundColor(Color.blue)
-                    
-                    Image(systemName: "plus")
-                        .resizable()
-                        .frame(width: 20, height: 20)
-                        .foregroundColor(.white)
-                        .font(.headline)
+                .padding(.horizontal, 15)
+                .frame(maxWidth: .infinity, alignment: .leading)
+
+                Button {
+                    listViewModel.isShowAddView.toggle()
+                } label: {
+                    ZStack {
+                        Circle()
+                            .frame(width: 56, height: 56)
+                            .foregroundColor(Color.blue)
+
+                        Image(systemName: "plus")
+                            .resizable()
+                            .frame(width: 20, height: 20)
+                            .foregroundColor(.white)
+                            .font(.headline)
+                    }
+                    .offset(x: -20, y: -30)
                 }
-                .offset(x: -20, y: -30)
+                .buttonStyle(PlainButtonStyle())
             }
-            .buttonStyle(PlainButtonStyle())
         }
     }
 }
@@ -102,8 +115,7 @@ struct CardItem: View {
                         }
                     }
                 }
-            )
-        }
+            )}
     }
     
     @ViewBuilder

@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		0A19FC882A055F9E0082F03B /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A19FC872A055F9E0082F03B /* ListView.swift */; };
 		0A19FC8A2A0572100082F03B /* RandomWordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A19FC892A0572100082F03B /* RandomWordView.swift */; };
-		0A19FC8C2A05928F0082F03B /* TranslateButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A19FC8B2A05928F0082F03B /* TranslateButtonView.swift */; };
 		0A19FC8E2A059C390082F03B /* NewWordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A19FC8D2A059C390082F03B /* NewWordView.swift */; };
 		0A2EFB5D2A069BF80035DCFA /* ListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2EFB5C2A069BF80035DCFA /* ListViewModel.swift */; };
 		0A2EFB612A06CED10035DCFA /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 0A2EFB602A06CED10035DCFA /* Realm */; };
@@ -19,13 +18,11 @@
 		0A553F3E29F049FB0021D411 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A553F3D29F049FB0021D411 /* RootView.swift */; };
 		0A553F4029F049FD0021D411 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A553F3F29F049FD0021D411 /* Assets.xcassets */; };
 		0A553F4329F049FD0021D411 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A553F4229F049FD0021D411 /* Preview Assets.xcassets */; };
-		0A553F5029F04E430021D411 /* AppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A553F4F29F04E430021D411 /* AppView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		0A19FC872A055F9E0082F03B /* ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
 		0A19FC892A0572100082F03B /* RandomWordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomWordView.swift; sourceTree = "<group>"; };
-		0A19FC8B2A05928F0082F03B /* TranslateButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateButtonView.swift; sourceTree = "<group>"; };
 		0A19FC8D2A059C390082F03B /* NewWordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewWordView.swift; sourceTree = "<group>"; };
 		0A2EFB5C2A069BF80035DCFA /* ListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewModel.swift; sourceTree = "<group>"; };
 		0A2EFB642A06CF530035DCFA /* WordItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordItem.swift; sourceTree = "<group>"; };
@@ -34,7 +31,6 @@
 		0A553F3D29F049FB0021D411 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		0A553F3F29F049FD0021D411 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0A553F4229F049FD0021D411 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		0A553F4F29F04E430021D411 /* AppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,8 +106,6 @@
 				0A19FC872A055F9E0082F03B /* ListView.swift */,
 				0A19FC892A0572100082F03B /* RandomWordView.swift */,
 				0A19FC8D2A059C390082F03B /* NewWordView.swift */,
-				0A19FC8B2A05928F0082F03B /* TranslateButtonView.swift */,
-				0A553F4F29F04E430021D411 /* AppView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -194,13 +188,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				0A19FC882A055F9E0082F03B /* ListView.swift in Sources */,
-				0A19FC8C2A05928F0082F03B /* TranslateButtonView.swift in Sources */,
 				0A2EFB5D2A069BF80035DCFA /* ListViewModel.swift in Sources */,
 				0A19FC8A2A0572100082F03B /* RandomWordView.swift in Sources */,
 				0A2EFB652A06CF530035DCFA /* WordItem.swift in Sources */,
 				0A553F3E29F049FB0021D411 /* RootView.swift in Sources */,
 				0A553F3C29F049FB0021D411 /* EngApp.swift in Sources */,
-				0A553F5029F04E430021D411 /* AppView.swift in Sources */,
 				0A19FC8E2A059C390082F03B /* NewWordView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

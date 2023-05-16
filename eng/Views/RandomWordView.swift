@@ -41,7 +41,7 @@ struct RandomWordView: View {
                             HStack {
                                 Spacer()
                                 
-                                Text("Show translate")
+                                Text("Показать перевод")
                                     .frame(height: 55)
                                     .frame(maxWidth: .infinity)
                                 
@@ -76,15 +76,15 @@ struct RandomWordView: View {
                     }
                 }) {
                     HStack {
-                        Spacer(minLength: 50)
+                        Spacer(minLength: 30)
                         
-                        Text("Next word")
+                        Text("Следующее слово")
                             .frame(height: 55)
                             .frame(maxWidth: .infinity)
                         
                         Image(systemName: "arrowshape.right.fill")
                         
-                        Spacer(minLength: 60)
+                        Spacer(minLength: 40)
                     }
                     .font(.headline)
                     .background(Color.blue)
@@ -102,6 +102,7 @@ struct RandomWordView: View {
     }
 
     func getRandomWord() {
+        //проверка словаря на пустоту
         if wordItem.isEmpty {
             //ничего не делаем
         } else {
