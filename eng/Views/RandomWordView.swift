@@ -76,15 +76,16 @@ struct RandomWordView: View {
                     }
                 }) {
                     HStack {
-                        Spacer(minLength: 30)
+                        Spacer(minLength: 20)
                         
                         Text("Следующее слово")
                             .frame(height: 55)
                             .frame(maxWidth: .infinity)
+
                         
                         Image(systemName: "arrowshape.right.fill")
-                        
-                        Spacer(minLength: 40)
+                            .padding()
+                        Spacer(minLength: 5)
                     }
                     .font(.headline)
                     .background(Color.blue)

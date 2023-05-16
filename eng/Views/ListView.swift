@@ -9,19 +9,32 @@ import SwiftUI
 import RealmSwift
 
 struct ListView: View {
-    
+
+    @State private var searchText = ""
     @EnvironmentObject var listViewModel: ListViewModel
-    @ObservedResults(WordItem.self) var wordItem
+    //добавлен сам массив данных из Realm + сортировка по алфавиту
+    @ObservedResults(WordItem.self, sortDescriptor: SortDescriptor(keyPath: "mainWord", ascending: true)) var wordItem
     
     var body: some View {
         VStack {
-            Spacer()
+            VStack {
+                Text("Ваш словарь")
+                    .font(.system(size: 20, weight: .black))
 
-            Text("Ваш словарь")
-                .font(.system(size: 20, weight: .black))
-                .padding(.vertical, 8)
+                //Поиск
+                HStack(spacing: 8) {
+                    Image(systemName: "magnifyingglass")
+                        .resizable()
+                        .frame(maxWidth: 15, maxHeight: 15)
+                        .foregroundColor(.gray)
 
-            Spacer()
+                    TextField("Поиск", text: $searchText)
+                }
+                .padding(8)
+                .padding(.horizontal, 20)
+                .background(Color(.systemGray5))
+                .searchable(text: $searchText, collection: $wordItem, keyPath: \.mainWord)
+            }
 
             Divider()
 
@@ -41,7 +54,6 @@ struct ListView: View {
                     }
                     .frame(maxWidth: .infinity)
                 }
-                .padding(.horizontal, 15)
                 .frame(maxWidth: .infinity, alignment: .leading)
 
                 Button {
@@ -65,6 +77,7 @@ struct ListView: View {
         }
     }
 }
+
 
 struct CardItem: View {
 
