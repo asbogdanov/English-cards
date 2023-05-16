@@ -59,7 +59,6 @@ struct RandomWordView: View {
                     .opacity(isShowTranslate ? 0 : 1)
                 }
 
-                
                 Button(action: {
                     withAnimation {
                         offsetX = -50
@@ -101,16 +100,16 @@ struct RandomWordView: View {
             }
         }
     }
-    
+
     func getRandomWord() {
-        let rand = Int.random(in: 0...wordItem.count - 1)
-        self.word = wordItem[rand]
+        if wordItem.isEmpty {
+            //ничего не делаем
+        } else {
+            let rand = Int.random(in: 0...wordItem.count - 1)
+            self.word = wordItem[rand]
+        }
     }
 }
-
-
-
-
 
 struct RandomWordView_Previews: PreviewProvider {
     static var previews: some View {
